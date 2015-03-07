@@ -13,8 +13,6 @@ class GameScene: SKScene {
      
         let totalWidth = UIScreen.mainScreen().bounds.width
         
-        NSLog("%@", totalWidth)
-        
         let rows = 20
         let cols = 10
         let offset = 35
@@ -41,5 +39,27 @@ class GameScene: SKScene {
         square.fillColor = color
         square.position = position
         return square
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        if let touch = touches.anyObject() as? UITouch {
+            let fadeOut = SKAction.fadeOutWithDuration(0)
+            
+            if let shapeNode = nodeAtPoint(touch.locationInNode(self)) as? SKShapeNode {
+                shapeNode.runAction(fadeOut)
+            }
+        }
+
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        if let touch = touches.anyObject() as? UITouch {
+            let fadeIn = SKAction.fadeInWithDuration(0)
+
+            
+            if let shapeNode = nodeAtPoint(touch.locationInNode(self)) as? SKShapeNode {
+                shapeNode.runAction(fadeIn)
+            }
+        }
     }
 }
