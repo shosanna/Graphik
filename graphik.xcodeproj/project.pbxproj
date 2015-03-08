@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E97DF111AACB0990068F866 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97DF101AACB0990068F866 /* MenuScene.swift */; };
 		5BCC2AB31AAA4A2200371FFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC2AB21AAA4A2200371FFA /* AppDelegate.swift */; };
 		5BCC2AB51AAA4A2200371FFA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5BCC2AB41AAA4A2200371FFA /* GameScene.sks */; };
 		5BCC2AB71AAA4A2200371FFA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCC2AB61AAA4A2200371FFA /* GameScene.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E97DF101AACB0990068F866 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		5BCC2AAD1AAA4A2200371FFA /* graphik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = graphik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BCC2AB11AAA4A2200371FFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BCC2AB21AAA4A2200371FFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				5BCC2AB41AAA4A2200371FFA /* GameScene.sks */,
 				5BCC2AB61AAA4A2200371FFA /* GameScene.swift */,
 				5BCC2AB81AAA4A2200371FFA /* GameViewController.swift */,
+				3E97DF101AACB0990068F866 /* MenuScene.swift */,
 				5BCC2ABA1AAA4A2200371FFA /* Main.storyboard */,
 				5BCC2ABD1AAA4A2200371FFA /* Images.xcassets */,
 				5BCC2ABF1AAA4A2200371FFA /* LaunchScreen.xib */,
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BCC2AB71AAA4A2200371FFA /* GameScene.swift in Sources */,
+				3E97DF111AACB0990068F866 /* MenuScene.swift in Sources */,
 				5BCC2AB91AAA4A2200371FFA /* GameViewController.swift in Sources */,
 				5BCC2AB31AAA4A2200371FFA /* AppDelegate.swift in Sources */,
 			);
@@ -413,6 +417,7 @@
 				5BCC2AD21AAA4A2200371FFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5BCC2AD31AAA4A2200371FFA /* Build configuration list for PBXNativeTarget "graphikTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +426,7 @@
 				5BCC2AD51AAA4A2200371FFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
