@@ -18,12 +18,17 @@ class GameScene: SKScene {
     var matrix = Array<Array<Tile>>()
     
     override func didMoveToView(view: SKView) {
-     
+        initilizeBackground("stardust")
+        initializeMap()
+    }
+    
+    // INITIALIZE the main map with tiles
+    func initializeMap() {
         let totalWidth = UIScreen.mainScreen().bounds.width
         
-        let rows = 20
-        let cols = 10
-        let offset = 35
+        let rows = 21
+        let cols = 13
+        let offset = 30
         let size: CGFloat = 30
         
         for var i = 0; i < rows; i = i + 1 {
@@ -31,14 +36,15 @@ class GameScene: SKScene {
             for var j = 0; j < cols; j++ {
                 let position = CGPoint(x: offset*j, y: offset*i)
                 
-                let color = SKColor(red: 0.7, green: 0.45, blue: 0.65, alpha: 1)
-                let tile = generateSquare(position, size: size, color: color)
+                let texture = SKTexture(imageNamed: "green1")
+                let tile = generateSquare(position, size: size, texture: texture)
                 tile.row = i
                 tile.col = j
 
                 if arc4random() % 3 >= 2 {
                     tile.visited = true
-                    tile.fillColor = SKColor(red: 0.4, green: 0.7, blue: 0.4, alpha: 1)
+                    tile.fillColor = SKColor(red: 1, green: 1, blue: 1, alpha: 1)
+                    tile.fillTexture = SKTexture(imageNamed: "wall1")
                 }
 
                 
@@ -50,29 +56,33 @@ class GameScene: SKScene {
         }
     }
     
-    func generateSquare(position: CGPoint, size: CGFloat, color: SKColor) -> Tile {
+    // FUNC for generating tiles for the map
+    func generateSquare(position: CGPoint, size: CGFloat, texture: SKTexture) -> Tile {
         var square = Tile(rectOfSize: CGSize(width: size, height: size))
         square.name = "square"
-        square.fillColor = color
-        // square.fillTexture = SKTexture(imageNamed: "green2")
+        square.fillColor = SKColor(red: 1, green: 1, blue: 1, alpha: 1)
+        square.fillTexture = texture
+        
         square.position = position
         return square
     }
     
     var queue = Array<Tile>()
-    
+    // BFS algorithm
     func bfs(tile: Tile?) {
         if tile != nil {
             queue.append(tile!)
         }
         
         if (queue.count > 0) {
-            var tile = queue.removeAtIndex(queue.count - 1)
-//            var tile = queue.removeAtIndex(0)
+            // var tile = queue.removeAtIndex(queue.count - 1)
+            var tile = queue.removeAtIndex(0)
             
             if (!tile.visited) {
                 tile.visited = true
-                tile.fillColor = SKColor(red: 0.5, green: 0.2, blue: 0.5, alpha: 1)
+                
+                tile.fillColor = SKColor(red: 0.4, green: 0.9, blue: 0.4, alpha: 1)
+                //tile.fillTexture = SKTexture(imageNamed: "green1")
                 
                 queue.append(matrix[(tile.row) % matrix.count][(tile.col + 1) % matrix[0].count])
                 queue.append(matrix[(tile.row + 1) % matrix.count][(tile.col) % matrix[0].count])
@@ -92,7 +102,7 @@ class GameScene: SKScene {
     }
     
     var started = false
-    
+    // STARTS the algorithm when user touches any tile
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         if let touch = touches.anyObject() as? UITouch {
             
@@ -108,14 +118,13 @@ class GameScene: SKScene {
         
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        if let touch = touches.anyObject() as? UITouch {
-            let fadeIn = SKAction.fadeInWithDuration(0)
-            
-            
-            if let shapeNode = nodeAtPoint(touch.locationInNode(self)) as? Tile {
-                shapeNode.runAction(fadeIn)
-            }
-        }
+    // SETS the background image
+    func initilizeBackground(bg: String) {
+        let bg: SKSpriteNode = SKSpriteNode(imageNamed: bg)
+        bg.anchorPoint = CGPointMake(0.5, 0.5)
+        bg.size.height = self.size.height
+        bg.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+        
+        self.addChild(bg)
     }
 }
